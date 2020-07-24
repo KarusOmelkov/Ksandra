@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Активированные{% endblock %}
+
+{% block link_two %}active{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table class="table table-bordered table-sm" style="margin-top: 70px;">
+        <thead>
+            <tr>
+                <th scope="col">Код</th>
+                <th scope="col">Награда</th>
+                <th scope="col">Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for list in activated_list %}
+                {% if list.activated %}
+                    <tr>
+                        <th scope="row"><a href="{% url 'birthday:prize_code' list.code %}">{{ list.code }}</a></th>
+                        <td>{{ list.prize }}</td>
+                        <td class="{% if list.status %}bg-success{% else %}bg-danger{% endif %}"></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

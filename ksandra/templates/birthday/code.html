@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Код{% endblock %}
+{% block style %}
+    <style>
+        html,
+        body {
+          height: 100%;
+        }
+
+        body {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-align: center;
+          align-items: center;
+          padding-top: 0px;
+          padding-bottom: 40px;
+          background-color: #333333;
+        }
+
+        .form-signin {
+          width: 100%;
+          max-width: 330px;
+          padding: 15px;
+          margin: auto;
+        }
+        .form-signin .form-control {
+          position: relative;
+          box-sizing: border-box;
+          height: auto;
+          padding: 10px;
+          font-size: 16px;
+        }
+        .form-signin .form-control:focus {
+          z-index: 2;
+        }
+
+    </style>
+{% endblock %}
+
+{% block link_one %}active{% endblock %}
+
+{% block content %}
+    {% if time %}
+        <div class="mx-auto">
+            <h3>Только 1 код в день</h3>
+            <h3>Вернись позже</h3>
+            <h3>{{ next_time }}</h3>
+            <h3>Буду ждать &#128522;</h3>
+        </div>
+    {% else %}
+        <form class="form-signin" action="{% url 'birthday:prize' %}" method="GET">
+            {% csrf_token %}
+            <h3 class="card-title mt-3 text-center">Введи код</h3>
+            <div><input type="text" class="form-control mb-3" placeholder="Код" autofocus="" name="code" required=""></div>
+            <div><input class="btn btn-lg btn-primary btn-block" type="submit" value="Отправить"></div>
+        </form>
+    {% endif %}
+{% endblock %}

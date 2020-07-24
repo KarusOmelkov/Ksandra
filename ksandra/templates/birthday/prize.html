@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}Приз{% endblock %}
+
+{% block style %}
+{% if style %}
+    <style>
+        img {
+            margin-top: 50px;
+        }
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+    </style>
+{% else %}
+    {% if prize.image_add_one and prize.image_add_two %}
+    {% else %}
+        <style>
+            html,
+            body {
+              height: 100%;
+            }
+
+            body {
+              display: -ms-flexbox;
+              display: flex;
+              -ms-flex-align: center;
+              align-items: center;
+              padding-top: 0px;
+              padding-bottom: 40px;
+            }
+        </style>
+    {% endif %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if prize.activated %}
+        {% if prize.image_add_one and prize.image_add_two and prize.image_add_three %}
+            {% if url %}
+                <div class="container" style="margin-top: 60px;">
+                    <div class="mr-auto ml-auto" style="width: 350px;">
+                        <img src="{{ url }}">
+                    </div>
+                </div>
+            {% else %}
+                {% if prize.poem %}
+                    <div class="container" style="margin-top: 60px;">
+                        <h5 class="text-center">{{ prize.poem|linebreaks  }}</h5>
+                    </div>
+                {% else %}
+                    <div class="container">
+                        <ul class="nav nav-pills mb-0 mr-auto ml-auto" id="pills-tab" role="tablist" style="margin-top: 70px; width: 313px;">
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Стих 1</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Стих 2</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Стих 3</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-poem-tab" data-toggle="pill" href="#pills-poem" role="tab" aria-controls="pills-poem" aria-selected="false">Стих 4</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content mx-auto" id="pills-tabContent">
+                          <div style="width: 350px;" class="tab-pane fade show active mr-auto ml-auto" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                              <img src="{{ prize.image.url }}">
+                          </div>
+                          <div style="width: 350px;" class="tab-pane fade mr-auto ml-auto" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                              <img src="{{ prize.image_add_one.url }}">
+                          </div>
+                          <div style="width: 350px;" class="tab-pane fade mr-auto ml-auto" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                              <img src="{{ prize.image_add_two.url }}">
+                          </div>
+                          <div style="width: 350px;" class="tab-pane fade mr-auto ml-auto" id="pills-poem" role="tabpanel" aria-labelledby="pills-poem-tab">
+                              <img src="{{ prize.image_add_three.url }}">
+                          </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="container">
+                        <form class="form-inline" action="{% url 'birthday:prize_poem' %}" method="post">
+                            {% csrf_token %}
+                            <div class="mr-auto ml-auto mb-1">
+                                <p class="mb-0">Выбери стих, который я тебе расскажу</p>
+                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="choose">
+                                    <option selected>Выбери стих...</option>
+                                    <option value="1">Стих 1</option>
+                                    <option value="2">Стих 2</option>
+                                    <option value="3">Стих 3</option>
+                                    <option value="4">Стих 4</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary my-1">Отправить</button>
+                            </div>
+                        </form>
+                    </div>
+                    <hr>
+
+                    <div class="container col-12 col-xl-4">
+                        <form class="mx-auto" action="{% url 'birthday:prize_poem_two' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Или напиши свой &#128522;</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="15" name="text"></textarea>
+                                <button type="submit" class="btn btn-primary my-1 mt-2">Отправить</button>
+                            </div>
+                        </form>
+                    </div>
+            {% endif %}{% endif %}
+        {% else %}
+            <img class="mx-auto" src="{{ prize.image.url }}" >
+        {% endif %}
+    {% else %}
+        <h1 class="mx-auto" >Предусмотрено</h1>
+    {% endif %}
+{% endblock %}
