@@ -39,13 +39,13 @@ def prize_code(request, code):
     style = prize.code == 'EYEHNV' or prize.code == 'LNYLSJ' or prize.code == 'MFBCWK'
     url = None
     if prize.poem_choose == '1':
-        url = prize.image.url
+        url = prize.image
     elif prize.poem_choose == '2':
-        url = prize.image_add_one.url
+        url = prize.image_add_one
     elif prize.poem_choose == '3':
-        url = prize.image_add_two.url
+        url = prize.image_add_two
     elif prize.poem_choose == '4':
-        url = prize.image_add_three.url
+        url = prize.image_add_three
     return render(request, 'birthday/prize.html', {'prize': prize, 'style': style, 'url': url})
 
 def prize_poem(request):

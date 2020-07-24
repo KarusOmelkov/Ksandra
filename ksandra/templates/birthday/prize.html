@@ -69,16 +69,16 @@
                         </ul>
                         <div class="tab-content mx-auto" id="pills-tabContent">
                           <div style="width: 350px;" class="tab-pane fade show active mr-auto ml-auto" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                              <img src="{{ prize.image.url }}">
+                              <img src="{{ prize.image }}">
                           </div>
                           <div style="width: 350px;" class="tab-pane fade mr-auto ml-auto" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                              <img src="{{ prize.image_add_one.url }}">
+                              <img src="{{ prize.image_add_one }}">
                           </div>
                           <div style="width: 350px;" class="tab-pane fade mr-auto ml-auto" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                              <img src="{{ prize.image_add_two.url }}">
+                              <img src="{{ prize.image_add_two }}">
                           </div>
                           <div style="width: 350px;" class="tab-pane fade mr-auto ml-auto" id="pills-poem" role="tabpanel" aria-labelledby="pills-poem-tab">
-                              <img src="{{ prize.image_add_three.url }}">
+                              <img src="{{ prize.image_add_three }}">
                           </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     </div>
             {% endif %}{% endif %}
         {% else %}
-            <img class="mx-auto" src="https://drive.google.com/file/d/1jnaPsOEUwjZgpLXwv-FkaqmdLBVR4Dhy/view" >
+            <img class="mx-auto" src="{{ prize.image }}" >
         {% endif %}
     {% else %}
         <h1 class="mx-auto" >Предусмотрено</h1>
