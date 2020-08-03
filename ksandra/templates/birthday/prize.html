@@ -3,7 +3,7 @@
 {% block title %}Приз{% endblock %}
 
 {% block style %}
-{% if style %}
+{% if style and not check %}
     <style>
         img {
             margin-top: 50px;
