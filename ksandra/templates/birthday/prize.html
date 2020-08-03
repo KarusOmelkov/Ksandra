@@ -114,9 +114,18 @@
                     </div>
             {% endif %}{% endif %}
         {% else %}
-            <img class="mx-auto" src="{{ prize.image }}" >
+            <img class="mx-auto" src="{{ prize.image }}" style="margin-top: 60px;">
         {% endif %}
     {% else %}
-        <h1 class="mx-auto" >Предусмотрено</h1>
+        {% if check %}
+            <div class="container">
+                <div class="mr-auto ml-auto" style="width: 350px;">
+                    <h3 class="ml-2" >Активируй этот код чуть позже, пожалуйста.</h3>
+                    <h3 class="ml-2" >Через {{ count }} активаций</h3>
+                </div>
+            </div>
+        {% else %}
+            <h1 class="mx-auto" >Предусмотрено</h1>
+        {% endif %}
     {% endif %}
 {% endblock %}

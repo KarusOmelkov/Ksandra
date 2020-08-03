@@ -15,27 +15,42 @@ def code(request):
 
     return render(request, 'birthday/code.html', {'time': time, 'next_time': next_time})
 
+
 def activated(request):
     activated_list = Prize.objects.order_by('-time_activate')
     return render(request, 'birthday/list.html', {'activated_list': activated_list})
 
+
 def instruction(request):
     return render(request, 'birthday/instruction.html')
+
 
 def prize(request):
     try:
         prize = Prize.objects.get(code=request.GET['code'])
+        activated_list = Prize.objects.order_by('activated')
         if not prize.activated:
-            prize.activated = True
-            prize.time_activate = timezone.now()
-            prize.save()
+            if len(activated_list) < 8 and (prize.code == 'DMQSGA' or prize.code == 'LNYLSJ'):
+                pass
+            else:
+                prize.activated = True
+                prize.time_activate = timezone.now()
+                prize.save()
     except:
-        raise Http404("Код не найден!")
+        return render(request, 'birthday/NotFound.html')
 
     return HttpResponseRedirect(reverse('birthday:prize_code', args=(prize.code,)))
 
+
 def prize_code(request, code):
+    global check
     prize = Prize.objects.get(code=code)
+    activated_list = Prize.objects.filter(activated=True)
+    if len(activated_list) < 8 and (prize.code == 'DMQSGA' or prize.code == 'LNYLSJ'):
+        check = True
+    else:
+        check = False
+
     style = prize.code == 'EYEHNV' or prize.code == 'LNYLSJ' or prize.code == 'MFBCWK'
     url = None
     if prize.poem_choose == '1':
@@ -46,13 +61,15 @@ def prize_code(request, code):
         url = prize.image_add_two
     elif prize.poem_choose == '4':
         url = prize.image_add_three
-    return render(request, 'birthday/prize.html', {'prize': prize, 'style': style, 'url': url})
+    return render(request, 'birthday/prize.html', {'prize': prize, 'style': style, 'url': url, 'check': check, 'count': 7 - len(activated_list)})
+
 
 def prize_poem(request):
     prize = Prize.objects.get(code='ORUHXM')
     prize.poem_choose = request.POST['choose']
     prize.save()
     return HttpResponseRedirect(reverse('birthday:prize_code', args=('ORUHXM',)))
+
 
 def prize_poem_two(request):
     prize = Prize.objects.get(code='ORUHXM')

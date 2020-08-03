@@ -16,7 +16,7 @@ class Prize(models.Model):
     image_add_three = models.TextField('Изображение 3', blank=True)
 
     def __str__(self):
-        return self.code
+        return self.code + ' - ' + self.prize
 
     def activation(self):
         return self.time_activate >= (timezone.now() - datetime.timedelta(days=1))
