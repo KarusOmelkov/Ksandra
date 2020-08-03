@@ -28,7 +28,7 @@ def instruction(request):
 def prize(request):
     try:
         prize = Prize.objects.get(code=request.GET['code'])
-        activated_list = Prize.objects.order_by('activated')
+        activated_list = Prize.objects.filter(activated=True)
         if not prize.activated:
             if len(activated_list) < 8 and (prize.code == 'DMQSGA' or prize.code == 'LNYLSJ'):
                 pass
