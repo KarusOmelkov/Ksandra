@@ -49,7 +49,7 @@
             <h3>Буду ждать &#128522;</h3>
         </div>
     {% else %}
-        <form class="form-signin" action="{% url 'birthday:prize' %}" method="GET">
+        <form class="form-signin" action="{% url 'birthday:prize' %}" method="GET" style="margin-top: 60px;">
             {% csrf_token %}
             <h3 class="card-title mt-3 text-center">Введи код</h3>
             <div><input type="text" class="form-control mb-3" placeholder="Код" autofocus="" name="code" required=""></div>
