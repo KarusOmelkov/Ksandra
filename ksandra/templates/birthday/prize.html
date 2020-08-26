@@ -107,7 +107,17 @@
                     </div>
             {% endif %}{% endif %}
         {% else %}
-            <img class="mx-auto" src="{{ prize.image }}" style="margin-top: 60px;">
+            {% if mini_ksandra %}
+                <div class="container">
+                    <div class="mr-auto ml-auto" style="width: 350px;">
+                        <h3 align="center" style="margin-top: 60px;">Портрет</h3>
+                        <img class="mx-auto" src="{{ prize.image }}" style="margin-top: -40px; width: 350px; height: 494px;">
+                        <p class="mt-3" align="center">Ссылка: <a href="https://drive.google.com/drive/folders/1C3jdmu8LM9xvBgrMd1w3ji2Lr2qELTVF?usp=sharing">Google Диск</a> (С разными фонами)</p>
+                    </div>
+                </div>
+            {% else %}
+                <img class="mx-auto" src="{{ prize.image }}" style="margin-top: 60px;">
+            {% endif %}
         {% endif %}
     {% else %}
         {% if check %}

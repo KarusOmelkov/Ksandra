@@ -51,6 +51,7 @@ def prize_code(request, code):
     else:
         check = False
 
+    mini_ksandra = prize.code == 'QGDIRM'
     style = prize.code == 'EYEHNV' or prize.code == 'LNYLSJ' or prize.code == 'MFBCWK'
     url = None
     if prize.poem_choose == '1':
@@ -60,7 +61,7 @@ def prize_code(request, code):
     elif prize.poem_choose == '3':
         url = prize.image_add_two
 
-    return render(request, 'birthday/prize.html', {'prize': prize, 'style': style, 'url': url, 'check': check, 'count': 7 - len(activated_list)})
+    return render(request, 'birthday/prize.html', {'prize': prize, 'mini_ksandra': mini_ksandra, 'style': style, 'url': url, 'check': check, 'count': 7 - len(activated_list)})
 
 
 def prize_poem(request):
