@@ -13,7 +13,6 @@ class Prize(models.Model):
     image = models.TextField('Изображение')
     image_add_one = models.TextField('Изображение 1', blank=True)
     image_add_two = models.TextField('Изображение 2', blank=True)
-    image_add_three = models.TextField('Изображение 3', blank=True)
 
     def __str__(self):
         return self.code + ' - ' + self.prize

@@ -39,7 +39,7 @@
 
 {% block content %}
     {% if prize.activated %}
-        {% if prize.image_add_one and prize.image_add_two and prize.image_add_three %}
+        {% if prize.image_add_one and prize.image_add_two %}
             {% if url %}
                 <div class="container" style="margin-top: 60px;">
                     <div class="mr-auto ml-auto" style="width: 350px;">
@@ -48,12 +48,12 @@
                 </div>
             {% else %}
                 {% if prize.poem %}
-                    <div class="container" style="margin-top: 60px;">
+                    <div class="container" style="margin-top: 80px;">
                         <h5 class="text-center">{{ prize.poem|linebreaks  }}</h5>
                     </div>
                 {% else %}
                     <div class="container">
-                        <ul class="nav nav-pills mb-0 mr-auto ml-auto" id="pills-tab" role="tablist" style="margin-top: 70px; width: 313px;">
+                        <ul class="nav nav-pills mb-0 mr-auto ml-auto" id="pills-tab" role="tablist" style="margin-top: 70px; width: 235px;">
                           <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Стих 1</a>
                           </li>
@@ -62,9 +62,6 @@
                           </li>
                           <li class="nav-item" role="presentation">
                             <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Стих 3</a>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-poem-tab" data-toggle="pill" href="#pills-poem" role="tab" aria-controls="pills-poem" aria-selected="false">Стих 4</a>
                           </li>
                         </ul>
                         <div class="tab-content mx-auto" id="pills-tabContent">
@@ -76,9 +73,6 @@
                           </div>
                           <div style="width: 350px;" class="tab-pane fade mr-auto ml-auto" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                               <img src="{{ prize.image_add_two }}">
-                          </div>
-                          <div style="width: 350px;" class="tab-pane fade mr-auto ml-auto" id="pills-poem" role="tabpanel" aria-labelledby="pills-poem-tab">
-                              <img src="{{ prize.image_add_three }}">
                           </div>
                         </div>
                     </div>
@@ -94,7 +88,6 @@
                                     <option value="1">Стих 1</option>
                                     <option value="2">Стих 2</option>
                                     <option value="3">Стих 3</option>
-                                    <option value="4">Стих 4</option>
                                 </select>
                                 <button type="submit" class="btn btn-primary my-1">Отправить</button>
                             </div>

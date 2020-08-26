@@ -59,8 +59,7 @@ def prize_code(request, code):
         url = prize.image_add_one
     elif prize.poem_choose == '3':
         url = prize.image_add_two
-    elif prize.poem_choose == '4':
-        url = prize.image_add_three
+
     return render(request, 'birthday/prize.html', {'prize': prize, 'style': style, 'url': url, 'check': check, 'count': 7 - len(activated_list)})
 
 
