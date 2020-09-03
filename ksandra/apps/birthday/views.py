@@ -46,7 +46,7 @@ def prize_code(request, code):
     global check
     prize = Prize.objects.get(code=code)
     activated_list = Prize.objects.filter(activated=True)
-    if len(activated_list) < 8 and (prize.code == 'DMQSGA' or prize.code == 'LNYLSJ'):
+    if len(activated_list) < 5 and (prize.code == 'DMQSGA' or prize.code == 'LNYLSJ'):
         check = True
     else:
         check = False
