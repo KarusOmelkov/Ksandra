@@ -30,7 +30,7 @@ def prize(request):
         prize = Prize.objects.get(code=request.GET['code'])
         activated_list = Prize.objects.filter(activated=True)
         if not prize.activated:
-            if len(activated_list) < 8 and (prize.code == 'DMQSGA' or prize.code == 'LNYLSJ'):
+            if len(activated_list) < 1 and (prize.code == 'DMQSGA' or prize.code == 'LNYLSJ'):
                 pass
             else:
                 prize.activated = True
@@ -46,6 +46,10 @@ def prize_code(request, code):
     global check
     prize = Prize.objects.get(code=code)
     activated_list = Prize.objects.filter(activated=True)
+    if len(activated_list) < 1 and (prize.code == 'DMQSGA' or prize.code == 'LNYLSJ'):
+        check = True
+    else:
+        check = False
 
     mini_ksandra = prize.code == 'QGDIRM'
     style = prize.code == 'EYEHNV' or prize.code == 'DMQSGA' or prize.code == 'MFBCWK'
@@ -57,7 +61,7 @@ def prize_code(request, code):
     elif prize.poem_choose == '3':
         url = prize.image_add_two
 
-    return render(request, 'birthday/prize.html', {'prize': prize, 'mini_ksandra': mini_ksandra, 'style': style, 'url': url, 'check': False, 'count': 7 - len(activated_list)})
+    return render(request, 'birthday/prize.html', {'prize': prize, 'mini_ksandra': mini_ksandra, 'style': style, 'url': url, 'check': check, 'count': 7 - len(activated_list)})
 
 
 def prize_poem(request):
