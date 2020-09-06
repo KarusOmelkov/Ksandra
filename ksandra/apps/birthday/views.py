@@ -52,7 +52,7 @@ def prize_code(request, code):
         check = False
 
     mini_ksandra = prize.code == 'QGDIRM'
-    style = prize.code == 'EYEHNV' or prize.code == 'DMQSGA' or prize.code == 'MFBCWK'
+    style = prize.code == 'EYEHNV' or prize.code == 'DMQSGA' or prize.code == 'MFBCWK' or prize.code == 'LNYLSJ'
     url = None
     if prize.poem_choose == '1':
         url = prize.image
